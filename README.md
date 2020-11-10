@@ -22,7 +22,7 @@
 这个抽象类。而和大人作为总管，他既要掌握皇帝的动向，又要辖制各省官员，所以在类的层面上和大人（PrimeMinister）这个类就得有指向皇帝（Emperor）
 和官员列表的引用。 下面上UML图：  
 各省同僚：  
-![](images/Officials.png "")
+![](images/Officials.png "")  
 你作为和大人，总管统筹安排皇帝的行程，既要挟持皇帝，又要掌管各省官员让他们有序地执行任务：
 ![](images/Relations.png "")
 
