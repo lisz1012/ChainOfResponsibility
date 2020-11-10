@@ -21,9 +21,37 @@
 优化设计的小口诀：“变化的抽接口，相同的建模版”。所以我们在这里面对官员没不同的行为，最好把他们抽象成接口护着抽象类，这里我们采用官员（Official）
 这个抽象类。而和大人作为总管，他既要掌握皇帝的动向，又要辖制各省官员，所以在类的层面上和大人（PrimeMinister）这个类就得有指向皇帝（Emperor）
 和官员列表的引用。 下面上UML图：  
+
+## UML图
 各省同僚：  
 ![](images/Officials.png "")  
-你作为和大人，总管统筹安排皇帝的行程，既要挟持皇帝，又要掌管各省官员让他们有序地执行任务：
-![](images/Relations.png "")
+你作为和大人，统筹安排皇帝的行程，既要挟持皇帝，又要掌管各省官员让他们有序地执行任务（还得欺上瞒下、中饱私囊）：
+![](images/Relations.png "")  
 
+## 代码
+作为官员这个抽象类，我们考虑到实际情况，他要安排一个地方并陪同皇帝参观、游览, 其实就是一句话：伺候皇上。所以他有一个抽象方法serve，接受皇帝
+（Emperor）这个对象
+```java
+protected abstract void serve(Emperor emperor);
+```
+下面有具体的类，代表各省官员，他们自己有自己具体的方式去服务吾皇。而作为皇帝，乾隆只管着玩就好，当然了，你和大人可以安排当地的官员陪同，所以
+皇帝类只有一个play方法, 这里用一个字符串简单表示去游览的地方。为了以防万一，这个类的创建方式采用了单例模式，保证整个JVM里面就只有这么一个皇上，
+而且名字叫"乾隆"：
+```java
+public class Emperor {
+	private static final Emperor INSTANCE = new Emperor("乾隆");
+	private final String name;
 
+	private Emperor(String name) {
+		this.name = name;
+	}
+
+	public static Emperor getInstance() {
+		return INSTANCE;
+	}
+
+	public void play(Official official, String place){
+		System.out.println(official.getTitle() + " 安排 " + name + "皇帝游览了: " + place);
+	}
+}
+```
