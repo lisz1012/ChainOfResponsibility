@@ -137,15 +137,14 @@ public class PrimeMinister {
 而另一边济南知府这里，他要极尽所能，让圣上在大明湖畔玩得开心：
 ```java
 public class JinanOfficial extends Official{
-
-	public JinanOfficial() {
-		title = "济南知府";
-	}
-
-	@Override
-	protected void serve(Emperor emperor) {
-		emperor.play(this, "大明湖畔");
-	}
+    public JinanOfficial() {
+        title = "济南知府";
+    }
+    
+    @Override
+    protected void serve(Emperor emperor) {
+        emperor.play(this, "大明湖畔");
+    }
 }
 ```
 再次执行程序，模拟圣上的行程，结果输出如下：
