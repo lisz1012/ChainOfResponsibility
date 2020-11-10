@@ -38,14 +38,14 @@ protected abstract void serve(Emperor emperor);
 ```java
 public class HeibeiOfficial extends Official {
 
-	public HeibeiOfficial() {
-		this.title = "直隶总督";
-	}
+    public HeibeiOfficial() { 
+        this.title = "直隶总督";
+    }
 
-	@Override
-	protected void serve(Emperor emperor) {
-		emperor.play(this, "避暑山庄");
-	}
+    @Override
+    protected void serve(Emperor emperor) {
+        emperor.play(this, "避暑山庄");
+    }
 }
 ```
 这里其他官员的写法类似，只是换换地方供皇帝游览，略。  
@@ -54,19 +54,19 @@ public class HeibeiOfficial extends Official {
 而且名字叫"乾隆"：
 ```java
 public class Emperor {
-	private static final Emperor INSTANCE = new Emperor("乾隆");
-	private final String name;
-
-	private Emperor(String name) {
-		this.name = name;
-	}
-
-	public static Emperor getInstance() {
-		return INSTANCE;
-	}
-
-	public void play(Official official, String place){
-		System.out.println(official.getTitle() + " 安排 " + name + "皇帝游览了: " + place);
-	}
+    private static final Emperor INSTANCE = new Emperor("乾隆");
+    private final String name;
+    
+    private Emperor(String name) {
+        this.name = name;
+    }
+    
+    public static Emperor getInstance() {
+        return INSTANCE;
+    }
+    
+    public void play(Official official, String place){
+        System.out.println(official.getTitle() + " 安排 " + name + "皇帝游览了: " + place);
+    }
 }
 ```
