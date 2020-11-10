@@ -34,7 +34,22 @@
 ```java
 protected abstract void serve(Emperor emperor);
 ```
-下面有具体的类，代表各省官员，他们自己有自己具体的方式去服务吾皇。而作为皇帝，乾隆只管着玩就好，当然了，你和大人可以安排当地的官员陪同，所以
+下面有具体的类，代表各省官员，他们自己有自己具体的方式去服务吾皇，比如直隶总督是这么干的：
+```java
+public class HeibeiOfficial extends Official {
+
+	public HeibeiOfficial() {
+		this.title = "直隶总督";
+	}
+
+	@Override
+	protected void serve(Emperor emperor) {
+		emperor.play(this, "避暑山庄");
+	}
+}
+```
+这里其他官员的写法类似，只是换换地方供皇帝游览，略。  
+而作为皇帝，乾隆只管着玩就好，当然了，你和中堂可以安排当地的官员陪同，所以
 皇帝类只有一个play方法, 这里用一个字符串简单表示去游览的地方。为了以防万一，这个类的创建方式采用了单例模式，保证整个JVM里面就只有这么一个皇上，
 而且名字叫"乾隆"：
 ```java
