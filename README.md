@@ -17,7 +17,11 @@
 
 ![](images/img1.png "")  
 
-先别着急，我们已经知道，乾隆从北京到杭州要顺序经过直隶、山东、江苏、浙江四省。这样和大人就可以按省把任务大致划分为四个部分，责成四省的官员们
+先别着急，我们已经知道，乾隆从北京到杭州要顺序经过直隶、山东、江苏、浙江四省:
+
+![](images/img2.png "")  
+
+这样和大人就可以按省把任务大致划分为四个部分，责成四省的官员们
 分担这一个大工程，把他们应尽的的责任连成一个有序的链条，然后一依次让他们执行伺候皇上的任务，这样一来就解决了行程过于丰富，和大人一个人安排
 不过来的问题，还保证了各个步骤的有序性，而且哪一步出了问题还便于问责（甩锅，否则全是自己的错）。好了，说了这么多，现在切入技术层面。  
 
@@ -65,13 +69,13 @@ public class HebeiOfficial extends Official {
     }
 }
 ```
-这里在serve里面完全让参数"皇帝"自己决定怎么玩，（顺便说句题外话，这种让参数这个"外来的和尚"念经的方式，在各种设计模式里很常见，如果把Emperor换成
-Comparator，相信很多小伙伴就感觉有点像策略模式了。而且"直隶总督"也可以在皇帝play之前或者之后分别做一些事情，这像不像用JDK的代理的时候中那个
-InvocationHandler对待Method的方式？或者Spring中对于Aspect的处理？另外在Visitor等设计模式中你也能看到这种写法的身影）其他官员的写法类似，
-只是换个地方供皇帝游览而已，略。  
+这里在serve里面完全让参数"皇帝"自己决定怎么玩，（顺便说句题外话，这种让参数这个"外来的和尚"念经的方式，在各种设计模式里很常见。如果把这里的
+Emperor换成Comparator，相信很多小伙伴就感觉有点像策略模式了。而且"直隶总督"也可以在皇帝play之前或者之后分别做一些事情，这像不像用JDK
+的代理的时候中那个InvocationHandler对待Method的方式？或者Spring中对于Aspect的处理？另外在Visitor等设计模式中你也能看到这种写法的身影）
+其他官员的写法类似，只是换个地方供皇帝游览而已，参见后面的输出结果，这里略。  
 而作为皇帝，乾隆只管着玩就好，当然了，你和中堂可以安排当地的官员陪同，所以
-皇帝类只有一个play方法, 这里用一个字符串简单表示去游览的地方。为了以防万一，这个类的创建方式采用了单例模式，保证整个JVM里面就只有这么一个皇上，
-而且名字叫"乾隆"：
+皇帝类只有一个play方法, 这里用一个字符串简单表示去游览的地方。为了防止乾隆南下期间有人在北京"另立新君"（执行 new Emperor()），这个"皇帝"
+对象的创建过程采用了单例模式，保证整个JVM里面就只有这么一个皇上，而且名字叫"乾隆"：
 ```java
 public class Emperor {
     private static final Emperor INSTANCE = new Emperor("乾隆");
@@ -90,14 +94,14 @@ public class Emperor {
     }
 }
 ```
-而你，和珅和大人，只需要按各省顺序，合理安排好下面的官员，然后请出皇上，昭告天下：圣上下江南了，沿途各省小心伺候就好：
+而你，和珅和大人，只需要按各省顺序，合理安排好下面的官员，然后请出皇上并昭告天下：圣上下江南了，沿途各省小心伺候就好：
 ```java
 public class PrimeMinister {
     private static List<Official> list = new ArrayList<>();
     
     public static void main(String[] args) {
         // 下令沿途各省官员准备好
-        list.add(new HeibeiOfficial());
+        list.add(new HebeiOfficial());
         list.add(new ShandongOfficial());
         list.add(new JiangsuOfficial());
         list.add(new ZhejiangOfficial());
