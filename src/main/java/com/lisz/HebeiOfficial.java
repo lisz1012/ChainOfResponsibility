@@ -1,8 +1,8 @@
 package com.lisz;
 
-public class HeibeiOfficial extends Official {
+public class HebeiOfficial extends Official {
 
-	public HeibeiOfficial() {
+	public HebeiOfficial() {
 		this.title = "直隶总督";
 	}
 
